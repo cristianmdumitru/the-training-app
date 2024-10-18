@@ -27,9 +27,9 @@ class WorkoutTemplateCard extends StatelessWidget {
         );
       },
       child: Card(
-        margin: AppConstants.bottomMargin,
+        margin: DesignSystem.bottomMargin,
         child: Padding(
-          padding: AppConstants.padding,
+          padding: DesignSystem.leftPadding,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

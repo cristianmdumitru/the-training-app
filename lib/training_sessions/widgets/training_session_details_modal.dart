@@ -45,7 +45,7 @@ class _TrainingSessionDetailsModalState
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: AppConstants.padding,
+        padding: DesignSystem.padding,
         child: Column(
           children: <Widget>[
             const Row(
@@ -101,6 +101,7 @@ class _TrainingSessionDetailsModalState
                       name: _controller.text,
                       createdAt: DateTime.now().millisecondsSinceEpoch,
                       updatedAt: DateTime.now().millisecondsSinceEpoch,
+                      templateId: '',
                       exercises: [],
                       setsCount: {},
                     );

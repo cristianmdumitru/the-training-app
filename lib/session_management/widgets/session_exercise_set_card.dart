@@ -7,10 +7,12 @@ import 'package:training_app/session_management/session_management.dart';
 
 class SessionExerciseSetCard extends StatefulWidget {
   const SessionExerciseSetCard({
+    required this.index,
     required this.exercise,
     required this.exerciseSet,
     super.key,
   });
+  final int index;
   final SessionExercise exercise;
   final ExerciseSet exerciseSet;
 
@@ -61,68 +63,93 @@ class _SessionExerciseSetCardState extends State<SessionExerciseSetCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: AppConstants.bottomMargin,
-      child: Padding(
-        padding: AppConstants.horizontalPadding,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SizedBox(
-              width: 200,
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 90,
-                    child: TextField(
-                      textAlign: TextAlign.center,
-                      controller: _repsController,
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                      ],
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.zero,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: AppConstants.setCardHeight,
-                    width: 1,
-                    color: Colors.white.withOpacity(0.2),
-                  ),
-                  SizedBox(
-                    width: 90,
-                    child: TextField(
-                      textAlign: TextAlign.center,
-                      controller: _weightController,
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                      ],
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.zero,
-                      ),
-                    ),
-                  ),
-                ],
+      margin: DesignSystem.bottomMargin,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: DesignSystem.horizontalPadding,
+                  child: Text('Set ${widget.index + 1}'),
+                ),
               ),
-            ),
-            IconButton(
-              onPressed: () {
-                context.read<SessionManagementBloc>().add(
-                      SessionManagementEvent.deleteExerciseSet(
-                        exercise: widget.exercise,
-                        exerciseSet: widget.exerciseSet,
+              Container(
+                height: DesignSystem.setCardHeight,
+                width: 1,
+                color: DesignSystem.getDividerColor(context),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: DesignSystem.horizontalPadding,
+                  child: TextField(
+                    textAlign: TextAlign.center,
+                    controller: _repsController,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                height: DesignSystem.setCardHeight,
+                width: 1,
+                color: DesignSystem.getDividerColor(context),
+              ),
+              Expanded(
+                flex: 2,
+                child: Padding(
+                  padding: DesignSystem.horizontalPadding,
+                  child: Row(
+                    children: [
+                      Flexible(
+                        child: TextField(
+                          textAlign: TextAlign.center,
+                          controller: _weightController,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.zero,
+                          ),
+                        ),
                       ),
-                    );
-              },
-              icon: const Icon(Icons.delete),
-            ),
-          ],
-        ),
+                      if (widget.exerciseSet.unitSystem == UnitSystem.metric)
+                        const Text('KG')
+                      else
+                        const Text('lbs'),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                height: DesignSystem.setCardHeight,
+                width: 1,
+                color: DesignSystem.getDividerColor(context),
+              ),
+              Expanded(
+                child: IconButton(
+                  onPressed: () {
+                    context.read<SessionManagementBloc>().add(
+                          SessionManagementEvent.deleteExerciseSet(
+                            exercise: widget.exercise,
+                            exerciseSet: widget.exerciseSet,
+                          ),
+                        );
+                  },
+                  icon: const Icon(Icons.delete),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_app/app/app.dart';
 import 'package:training_app/session_exercise/session_exercise.dart';
 import 'package:training_app/session_management/session_management.dart';
+import 'package:training_app/settings/settings.dart';
 import 'package:training_app/training_sessions/training_sessions.dart';
 import 'package:training_app/user_exercise/user_exercise.dart';
 import 'package:uuid/uuid.dart';
@@ -10,10 +11,12 @@ import 'package:uuid/uuid.dart';
 class SessionManagementView extends StatefulWidget {
   const SessionManagementView({
     required this.trainingSession,
+    this.previousSession,
     super.key,
   });
 
   final TrainingSession trainingSession;
+  final TrainingSession? previousSession;
 
   @override
   State<SessionManagementView> createState() => _SessionManagementViewState();
@@ -97,59 +100,129 @@ class _SessionManagementViewState extends State<SessionManagementView> {
 class _SessionExerciseCard extends StatelessWidget {
   const _SessionExerciseCard({
     required this.sessionExercise,
+    this.previousSessionExercise,
   });
 
   final SessionExercise sessionExercise;
+  final SessionExercise? previousSessionExercise;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: AppConstants.padding,
+      padding: DesignSystem.padding,
       child: Container(
-        padding: AppConstants.padding,
+        padding: DesignSystem.padding,
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.02),
+          color: DesignSystem.getExerciseCardBackgroundColor(context),
           borderRadius: BorderRadius.circular(16),
         ),
-        child: Column(
+        child: Stack(
           children: [
-            Text(sessionExercise.baseExercise.name),
-            AppConstants.vSpace,
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxHeight: MediaQuery.sizeOf(context).height * 0.7,
+            Column(
+              children: [
+                const SizedBox(
+                  height: 4,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      sessionExercise.baseExercise.name,
                     ),
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: sessionExercise.sets.length,
-                      itemBuilder: (context, index) => SessionExerciseSetCard(
-                        exercise: sessionExercise,
-                        exerciseSet: sessionExercise.sets[index],
+                  ],
+                ),
+                DesignSystem.vSpace,
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ConstrainedBox(
+                        constraints: BoxConstraints(
+                          maxHeight: MediaQuery.sizeOf(context).height * 0.7,
+                        ),
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: sessionExercise.sets.length,
+                          itemBuilder: (context, index) =>
+                              SessionExerciseSetCard(
+                            index: index,
+                            exercise: sessionExercise,
+                            exerciseSet: sessionExercise.sets[index],
+                          ),
+                        ),
                       ),
-                    ),
+                      ElevatedButton(
+                        onPressed: () {
+                          context.read<SessionManagementBloc>().add(
+                                SessionManagementEvent.addExerciseSet(
+                                  exercise: sessionExercise,
+                                  exerciseSet: ExerciseSet(
+                                    id: const Uuid().v4(),
+                                    sessionExerciseId: sessionExercise.id,
+                                    effortRating: 9,
+                                    load: 100,
+                                    effortUnit: 10,
+                                    unitSystem: context
+                                        .read<SettingsCubit>()
+                                        .state
+                                        .preferredUnitSystem,
+                                    restTimeInSeconds: 0,
+                                  ),
+                                ),
+                              );
+                        },
+                        child: const Text('Add Set'),
+                      ),
+                    ],
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      context.read<SessionManagementBloc>().add(
-                            SessionManagementEvent.addExerciseSet(
-                              exercise: sessionExercise,
-                              exerciseSet: ExerciseSet(
-                                id: const Uuid().v4(),
-                                sessionExerciseId: sessionExercise.id,
-                                effortRating: 9,
-                                load: 100,
-                                effortUnit: 10,
+                ),
+              ],
+            ),
+            Positioned(
+              top: -10,
+              right: -10,
+              child: IconButton(
+                onPressed: () {
+                  showDialog<void>(
+                    context: context,
+                    builder: (contecxt) {
+                      return AlertDialog(
+                        title: const Text('Delete exercise'),
+                        content: SingleChildScrollView(
+                          child: ListBody(
+                            children: <Widget>[
+                              Text(
+                                'Are you sure you want to delete ${sessionExercise.baseExercise.name}?',
                               ),
-                            ),
-                          );
+                            ],
+                          ),
+                        ),
+                        actions: <Widget>[
+                          TextButton(
+                            child: const Text('No'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          TextButton(
+                            child: const Text('Yes'),
+                            onPressed: () {
+                              context.read<SessionManagementBloc>().add(
+                                    SessionManagementEvent.deleteExercise(
+                                      exercise: sessionExercise,
+                                    ),
+                                  );
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
                     },
-                    child: const Text('Add Set'),
-                  ),
-                ],
+                  );
+                },
+                icon: const Icon(
+                  Icons.delete_rounded,
+                ),
               ),
             ),
           ],

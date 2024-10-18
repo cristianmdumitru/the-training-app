@@ -25,9 +25,9 @@ mixin _$UserExercise {
   @HiveField(1)
   String get name => throw _privateConstructorUsedError;
   @HiveField(2)
-  ExerciseType get exerciseType => throw _privateConstructorUsedError;
+  ExerciseType? get exerciseType => throw _privateConstructorUsedError;
   @HiveField(3)
-  EffortType get effortType => throw _privateConstructorUsedError;
+  EffortType? get effortType => throw _privateConstructorUsedError;
   @HiveField(4)
   int get createdAt => throw _privateConstructorUsedError;
   @HiveField(5)
@@ -51,8 +51,8 @@ abstract class $UserExerciseCopyWith<$Res> {
   $Res call(
       {@HiveField(0) String id,
       @HiveField(1) String name,
-      @HiveField(2) ExerciseType exerciseType,
-      @HiveField(3) EffortType effortType,
+      @HiveField(2) ExerciseType? exerciseType,
+      @HiveField(3) EffortType? effortType,
       @HiveField(4) int createdAt,
       @HiveField(5) int updatedAt,
       @HiveField(6) List<MuscleGroup> targettedMuscleGroups});
@@ -73,8 +73,8 @@ class _$UserExerciseCopyWithImpl<$Res, $Val extends UserExercise>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? exerciseType = null,
-    Object? effortType = null,
+    Object? exerciseType = freezed,
+    Object? effortType = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? targettedMuscleGroups = null,
@@ -88,14 +88,14 @@ class _$UserExerciseCopyWithImpl<$Res, $Val extends UserExercise>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      exerciseType: null == exerciseType
+      exerciseType: freezed == exerciseType
           ? _value.exerciseType
           : exerciseType // ignore: cast_nullable_to_non_nullable
-              as ExerciseType,
-      effortType: null == effortType
+              as ExerciseType?,
+      effortType: freezed == effortType
           ? _value.effortType
           : effortType // ignore: cast_nullable_to_non_nullable
-              as EffortType,
+              as EffortType?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -123,8 +123,8 @@ abstract class _$$UserExerciseImplCopyWith<$Res>
   $Res call(
       {@HiveField(0) String id,
       @HiveField(1) String name,
-      @HiveField(2) ExerciseType exerciseType,
-      @HiveField(3) EffortType effortType,
+      @HiveField(2) ExerciseType? exerciseType,
+      @HiveField(3) EffortType? effortType,
       @HiveField(4) int createdAt,
       @HiveField(5) int updatedAt,
       @HiveField(6) List<MuscleGroup> targettedMuscleGroups});
@@ -143,8 +143,8 @@ class __$$UserExerciseImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? exerciseType = null,
-    Object? effortType = null,
+    Object? exerciseType = freezed,
+    Object? effortType = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? targettedMuscleGroups = null,
@@ -158,14 +158,14 @@ class __$$UserExerciseImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      exerciseType: null == exerciseType
+      exerciseType: freezed == exerciseType
           ? _value.exerciseType
           : exerciseType // ignore: cast_nullable_to_non_nullable
-              as ExerciseType,
-      effortType: null == effortType
+              as ExerciseType?,
+      effortType: freezed == effortType
           ? _value.effortType
           : effortType // ignore: cast_nullable_to_non_nullable
-              as EffortType,
+              as EffortType?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -207,10 +207,10 @@ class _$UserExerciseImpl implements _UserExercise {
   final String name;
   @override
   @HiveField(2)
-  final ExerciseType exerciseType;
+  final ExerciseType? exerciseType;
   @override
   @HiveField(3)
-  final EffortType effortType;
+  final EffortType? effortType;
   @override
   @HiveField(4)
   final int createdAt;
@@ -281,8 +281,8 @@ abstract class _UserExercise implements UserExercise {
   factory _UserExercise(
           {@HiveField(0) required final String id,
           @HiveField(1) required final String name,
-          @HiveField(2) required final ExerciseType exerciseType,
-          @HiveField(3) required final EffortType effortType,
+          @HiveField(2) required final ExerciseType? exerciseType,
+          @HiveField(3) required final EffortType? effortType,
           @HiveField(4) required final int createdAt,
           @HiveField(5) required final int updatedAt,
           @HiveField(6)
@@ -300,10 +300,10 @@ abstract class _UserExercise implements UserExercise {
   String get name;
   @override
   @HiveField(2)
-  ExerciseType get exerciseType;
+  ExerciseType? get exerciseType;
   @override
   @HiveField(3)
-  EffortType get effortType;
+  EffortType? get effortType;
   @override
   @HiveField(4)
   int get createdAt;

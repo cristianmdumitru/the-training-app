@@ -96,19 +96,19 @@ class _AppPageViewState extends State<_AppPageView> {
         selectedIndex: _currentIndex,
         destinations: const <Widget>[
           NavigationDestination(
-            icon: Icon(Icons.history),
-            label: 'History',
+            icon: Icon(Icons.person),
+            label: 'Profile',
           ),
           NavigationDestination(
-            icon: Icon(Icons.list),
-            label: 'Sessions',
+            icon: Icon(Icons.book),
+            label: 'Log',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.note),
+            label: 'Templates',
           ),
           NavigationDestination(
             icon: Icon(Icons.fitness_center),
-            label: 'Workouts',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.person),
             label: 'Exercises',
           ),
         ],

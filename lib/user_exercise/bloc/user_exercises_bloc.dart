@@ -63,6 +63,11 @@ class UserExercisesBloc extends Bloc<UserExercisesEvent, UserExercisesState> {
           createdAt: DateTime.now().millisecondsSinceEpoch,
           updatedAt: DateTime.now().millisecondsSinceEpoch,
           targettedMuscleGroups: [
+            MuscleGroup.vlo,
+            MuscleGroup.vmo,
+            MuscleGroup.lowerAbs,
+            MuscleGroup.upperAbs,
+            MuscleGroup.lats,
             MuscleGroup.lowerBack,
             MuscleGroup.bicepsFemoris,
             MuscleGroup.semimembranosus,
@@ -98,6 +103,7 @@ class UserExercisesBloc extends Bloc<UserExercisesEvent, UserExercisesState> {
             MuscleGroup.brachioradialis,
             MuscleGroup.teresMajor,
             MuscleGroup.infraspinatus,
+            MuscleGroup.rhomboid,
             MuscleGroup.biceps,
             MuscleGroup.upperTraps,
             MuscleGroup.midTraps,
@@ -175,7 +181,7 @@ class UserExercisesBloc extends Bloc<UserExercisesEvent, UserExercisesState> {
         UserExercise(
           id: 'seated_calf_raises',
           name: 'Seated calf raises',
-          exerciseType: ExerciseType.bodyweight,
+          exerciseType: ExerciseType.other,
           effortType: EffortType.rpe,
           createdAt: DateTime.now().millisecondsSinceEpoch,
           updatedAt: DateTime.now().millisecondsSinceEpoch,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_app/app/app.dart';
 import 'package:training_app/user_exercise/user_exercise.dart';
+import 'package:training_app/user_exercise_management/user_exercise_management.dart';
 
 /// {@template user_exercises_view}
 /// Displays the Body of the UserExercisePage.
@@ -24,7 +25,7 @@ class UserExercisesView extends StatelessWidget {
               case BlocStatus.success:
                 return ListView.builder(
                   key: const Key('exercises'),
-                  padding: AppConstants.padding,
+                  padding: DesignSystem.padding,
                   itemCount: state.exercises.length,
                   itemBuilder: (context, index) => UserExerciseCard(
                     userExercise: state.exercises[index],
@@ -46,11 +47,11 @@ class UserExercisesView extends StatelessWidget {
   }
 
   Future<void> _onPressed(BuildContext context) async {
-    final userExercise = await showModalBottomSheet<UserExercise>(
-      context: context,
-      builder: (BuildContext context) {
-        return const ExerciseDetailsModal();
-      },
+    final userExercise = await Navigator.push<UserExercise>(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const UserExerciseManagementView(),
+      ),
     );
     if (context.mounted && userExercise != null) {
       context.read<UserExercisesBloc>().add(

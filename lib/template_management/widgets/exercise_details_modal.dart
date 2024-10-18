@@ -22,27 +22,45 @@ class _TemplateExerciseDetailsModalState
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: AppConstants.padding,
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                const Row(
-                  children: [
-                    Text('Choose exercise'),
-                  ],
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                BlocSelector<UserExercisesBloc, UserExercisesState,
-                    List<UserExercise>>(
-                  selector: (state) {
-                    return state.exercises;
-                  },
-                  builder: (context, userExercises) {
-                    return ListView.builder(
+          padding: DesignSystem.padding,
+          child: Column(
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Pick exercise(s)'),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_exercises.isNotEmpty) {
+                        Navigator.of(context).pop(_exercises.values.toList());
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Please select at least one exercise.',
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    child: const Text(
+                      'Save',
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              BlocSelector<UserExercisesBloc, UserExercisesState,
+                  List<UserExercise>>(
+                selector: (state) {
+                  return state.exercises;
+                },
+                builder: (context, userExercises) {
+                  return Expanded(
+                    child: ListView.builder(
                       shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: userExercises.length,
                       itemBuilder: (BuildContext context, int index) {
                         final exercise = userExercises[index];
@@ -72,29 +90,11 @@ class _TemplateExerciseDetailsModalState
                           ],
                         );
                       },
-                    );
-                  },
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_exercises.isNotEmpty) {
-                      Navigator.of(context).pop(_exercises.values.toList());
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Please select at least one exercise.',
-                          ),
-                        ),
-                      );
-                    }
-                  },
-                  child: const Text(
-                    'Add selected exercises',
-                  ),
-                ),
-              ],
-            ),
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ),

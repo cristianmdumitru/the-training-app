@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_app/app/app.dart';
 import 'package:training_app/user_exercise/user_exercise.dart';
+import 'package:training_app/user_exercise_management/user_exercise_management.dart';
 
 class UserExerciseCard extends StatelessWidget {
   const UserExerciseCard({
@@ -15,13 +16,13 @@ class UserExerciseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        final updatedExercise = await showModalBottomSheet<UserExercise>(
-          context: context,
-          builder: (_) {
-            return ExerciseDetailsModal(
+        final updatedExercise = await Navigator.push<UserExercise>(
+          context,
+          MaterialPageRoute(
+            builder: (context) => UserExerciseManagementView(
               userExercise: userExercise,
-            );
-          },
+            ),
+          ),
         );
         if (context.mounted && updatedExercise != null) {
           context.read<UserExercisesBloc>().add(
@@ -30,9 +31,9 @@ class UserExerciseCard extends StatelessWidget {
         }
       },
       child: Card(
-        margin: AppConstants.bottomMargin,
+        margin: DesignSystem.bottomMargin,
         child: Padding(
-          padding: AppConstants.padding,
+          padding: DesignSystem.leftPadding,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

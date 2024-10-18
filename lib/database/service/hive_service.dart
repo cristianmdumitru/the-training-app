@@ -27,7 +27,8 @@ class HiveService {
       ..registerAdapter(ExerciseSetImplAdapter())
       ..registerAdapter(MuscleGroupAdapter())
       ..registerAdapter(ExerciseTypeAdapter())
-      ..registerAdapter(EffortTypeAdapter());
+      ..registerAdapter(EffortTypeAdapter())
+      ..registerAdapter(UnitSystemAdapter());
     userExercisesBox =
         await Hive.openBox<UserExercise>(HiveBox.userExercises.name);
     trainingSessionsBox =

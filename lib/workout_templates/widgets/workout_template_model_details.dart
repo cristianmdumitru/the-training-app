@@ -45,7 +45,7 @@ class _WorkoutTemplateDetailsModalState
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: AppConstants.padding,
+        padding: DesignSystem.padding,
         child: Column(
           children: <Widget>[
             const Row(

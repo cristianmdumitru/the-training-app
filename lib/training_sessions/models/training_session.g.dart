@@ -272,13 +272,14 @@ class TrainingSessionImplAdapter extends TypeAdapter<_$TrainingSessionImpl> {
       createdAt: fields[3] as int,
       updatedAt: fields[4] as int,
       setsCount: (fields[5] as Map).cast<MuscleGroup, int>(),
+      templateId: fields[6] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$TrainingSessionImpl obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -287,6 +288,8 @@ class TrainingSessionImplAdapter extends TypeAdapter<_$TrainingSessionImpl> {
       ..write(obj.createdAt)
       ..writeByte(4)
       ..write(obj.updatedAt)
+      ..writeByte(6)
+      ..write(obj.templateId)
       ..writeByte(2)
       ..write(obj.exercises)
       ..writeByte(5)
@@ -322,6 +325,7 @@ _$TrainingSessionImpl _$$TrainingSessionImplFromJson(
         (k, e) =>
             MapEntry($enumDecode(_$MuscleGroupEnumMap, k), (e as num).toInt()),
       ),
+      templateId: json['templateId'] as String,
     );
 
 Map<String, dynamic> _$$TrainingSessionImplToJson(
@@ -334,6 +338,7 @@ Map<String, dynamic> _$$TrainingSessionImplToJson(
       'updatedAt': instance.updatedAt,
       'setsCount': instance.setsCount
           .map((k, e) => MapEntry(_$MuscleGroupEnumMap[k]!, e)),
+      'templateId': instance.templateId,
     };
 
 const _$MuscleGroupEnumMap = {

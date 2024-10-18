@@ -25,10 +25,13 @@ class TrainingSessionsListView extends StatelessWidget {
 
               case BlocStatus.success:
                 return ListView.builder(
-                  padding: AppConstants.padding,
-                  itemCount: state.sessions.length,
+                  padding: DesignSystem.padding,
+                  itemCount: state.sortedSessions.length,
                   itemBuilder: (context, index) => TrainingSessionCard(
-                    trainingSession: state.sessions[index],
+                    trainingSession: state.sortedSessions[index],
+                    previousSession: state.getPreviousSession(
+                      session: state.sortedSessions[index],
+                    ),
                   ),
                 );
               case BlocStatus.error:

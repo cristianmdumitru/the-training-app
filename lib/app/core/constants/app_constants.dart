@@ -1,16 +1,59 @@
-import 'package:flutter/material.dart';
+import 'package:training_app/training_sessions/training_sessions.dart';
 
 class AppConstants {
-  static const SizedBox vSpace = SizedBox(
-    height: 16,
-  );
-  static const EdgeInsets padding = EdgeInsets.all(16);
-  static const EdgeInsets bottomMargin = EdgeInsets.only(bottom: 8);
-  static const EdgeInsets verticalMargin = EdgeInsets.symmetric(vertical: 16);
-  static const EdgeInsets horizontalMargin =
-      EdgeInsets.symmetric(horizontal: 16);
-  static const EdgeInsets horizontalPadding =
-      EdgeInsets.symmetric(horizontal: 16);
-  static const EdgeInsets verticalPadding = EdgeInsets.symmetric(vertical: 16);
-  static const double setCardHeight = 48;
+  static const List<MuscleGroup> frontMuscles = [
+    MuscleGroup.upperTraps,
+    MuscleGroup.gastrocnemius,
+    MuscleGroup.soleus,
+    MuscleGroup.tricepsLongHead,
+    MuscleGroup.obliques,
+    MuscleGroup.adductor,
+    MuscleGroup.biceps,
+    MuscleGroup.brachialis,
+    MuscleGroup.brachioradialis,
+    MuscleGroup.extensorCarpiRadialis,
+    MuscleGroup.externalObliques,
+    MuscleGroup.flexorCarpiRadialis,
+    MuscleGroup.frontDelts,
+    MuscleGroup.omohyoid,
+    MuscleGroup.pecMajor,
+    MuscleGroup.peroneusLongus,
+    MuscleGroup.lowerAbs,
+    MuscleGroup.upperAbs,
+    MuscleGroup.rectusFemoris,
+    MuscleGroup.sartorius,
+    MuscleGroup.serratusAnterior,
+    MuscleGroup.sternocleidomastoid,
+    MuscleGroup.tfl,
+    MuscleGroup.tricepsMedialHead,
+    MuscleGroup.vlo,
+    MuscleGroup.vmo,
+  ];
+
+  static const List<MuscleGroup> backMuscles = [
+    MuscleGroup.rhomboid,
+    MuscleGroup.semimembranosus,
+    MuscleGroup.upperTraps,
+    MuscleGroup.gastrocnemius,
+    MuscleGroup.soleus,
+    MuscleGroup.midTraps,
+    MuscleGroup.teresMajor,
+    MuscleGroup.lats,
+    MuscleGroup.tricepsLongHead,
+    MuscleGroup.obliques,
+    MuscleGroup.infraspinatus,
+    MuscleGroup.rearDelts,
+    MuscleGroup.extensorCarpi,
+    MuscleGroup.gluteusMaximus,
+    MuscleGroup.gluteusMedius,
+    MuscleGroup.semiTendinosis,
+    MuscleGroup.adductor,
+    MuscleGroup.bicepsFemoris,
+    MuscleGroup.forearms,
+    MuscleGroup.lowerBack,
+    MuscleGroup.outerThigh,
+    MuscleGroup.extensorCarpiUlnaris,
+    MuscleGroup.extensorDigitorum,
+    MuscleGroup.upperObliques,
+  ];
 }

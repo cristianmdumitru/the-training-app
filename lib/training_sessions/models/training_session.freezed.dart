@@ -32,6 +32,8 @@ mixin _$TrainingSession {
   int get updatedAt => throw _privateConstructorUsedError;
   @HiveField(5)
   Map<MuscleGroup, int> get setsCount => throw _privateConstructorUsedError;
+  @HiveField(6)
+  String get templateId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +53,8 @@ abstract class $TrainingSessionCopyWith<$Res> {
       @HiveField(2) List<SessionExercise> exercises,
       @HiveField(3) int createdAt,
       @HiveField(4) int updatedAt,
-      @HiveField(5) Map<MuscleGroup, int> setsCount});
+      @HiveField(5) Map<MuscleGroup, int> setsCount,
+      @HiveField(6) String templateId});
 }
 
 /// @nodoc
@@ -73,6 +76,7 @@ class _$TrainingSessionCopyWithImpl<$Res, $Val extends TrainingSession>
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? setsCount = null,
+    Object? templateId = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -99,6 +103,10 @@ class _$TrainingSessionCopyWithImpl<$Res, $Val extends TrainingSession>
           ? _value.setsCount
           : setsCount // ignore: cast_nullable_to_non_nullable
               as Map<MuscleGroup, int>,
+      templateId: null == templateId
+          ? _value.templateId
+          : templateId // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -117,7 +125,8 @@ abstract class _$$TrainingSessionImplCopyWith<$Res>
       @HiveField(2) List<SessionExercise> exercises,
       @HiveField(3) int createdAt,
       @HiveField(4) int updatedAt,
-      @HiveField(5) Map<MuscleGroup, int> setsCount});
+      @HiveField(5) Map<MuscleGroup, int> setsCount,
+      @HiveField(6) String templateId});
 }
 
 /// @nodoc
@@ -137,6 +146,7 @@ class __$$TrainingSessionImplCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? setsCount = null,
+    Object? templateId = null,
   }) {
     return _then(_$TrainingSessionImpl(
       id: null == id
@@ -163,6 +173,10 @@ class __$$TrainingSessionImplCopyWithImpl<$Res>
           ? _value._setsCount
           : setsCount // ignore: cast_nullable_to_non_nullable
               as Map<MuscleGroup, int>,
+      templateId: null == templateId
+          ? _value.templateId
+          : templateId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -177,7 +191,8 @@ class _$TrainingSessionImpl implements _TrainingSession {
       @HiveField(2) required final List<SessionExercise> exercises,
       @HiveField(3) required this.createdAt,
       @HiveField(4) required this.updatedAt,
-      @HiveField(5) required final Map<MuscleGroup, int> setsCount})
+      @HiveField(5) required final Map<MuscleGroup, int> setsCount,
+      @HiveField(6) required this.templateId})
       : _exercises = exercises,
         _setsCount = setsCount;
 
@@ -215,8 +230,12 @@ class _$TrainingSessionImpl implements _TrainingSession {
   }
 
   @override
+  @HiveField(6)
+  final String templateId;
+
+  @override
   String toString() {
-    return 'TrainingSession(id: $id, name: $name, exercises: $exercises, createdAt: $createdAt, updatedAt: $updatedAt, setsCount: $setsCount)';
+    return 'TrainingSession(id: $id, name: $name, exercises: $exercises, createdAt: $createdAt, updatedAt: $updatedAt, setsCount: $setsCount, templateId: $templateId)';
   }
 
   @override
@@ -233,7 +252,9 @@ class _$TrainingSessionImpl implements _TrainingSession {
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
             const DeepCollectionEquality()
-                .equals(other._setsCount, _setsCount));
+                .equals(other._setsCount, _setsCount) &&
+            (identical(other.templateId, templateId) ||
+                other.templateId == templateId));
   }
 
   @JsonKey(ignore: true)
@@ -245,7 +266,8 @@ class _$TrainingSessionImpl implements _TrainingSession {
       const DeepCollectionEquality().hash(_exercises),
       createdAt,
       updatedAt,
-      const DeepCollectionEquality().hash(_setsCount));
+      const DeepCollectionEquality().hash(_setsCount),
+      templateId);
 
   @JsonKey(ignore: true)
   @override
@@ -264,13 +286,13 @@ class _$TrainingSessionImpl implements _TrainingSession {
 
 abstract class _TrainingSession implements TrainingSession {
   factory _TrainingSession(
-          {@HiveField(0) required final String id,
-          @HiveField(1) required final String name,
-          @HiveField(2) required final List<SessionExercise> exercises,
-          @HiveField(3) required final int createdAt,
-          @HiveField(4) required final int updatedAt,
-          @HiveField(5) required final Map<MuscleGroup, int> setsCount}) =
-      _$TrainingSessionImpl;
+      {@HiveField(0) required final String id,
+      @HiveField(1) required final String name,
+      @HiveField(2) required final List<SessionExercise> exercises,
+      @HiveField(3) required final int createdAt,
+      @HiveField(4) required final int updatedAt,
+      @HiveField(5) required final Map<MuscleGroup, int> setsCount,
+      @HiveField(6) required final String templateId}) = _$TrainingSessionImpl;
 
   factory _TrainingSession.fromJson(Map<String, dynamic> json) =
       _$TrainingSessionImpl.fromJson;
@@ -293,6 +315,9 @@ abstract class _TrainingSession implements TrainingSession {
   @override
   @HiveField(5)
   Map<MuscleGroup, int> get setsCount;
+  @override
+  @HiveField(6)
+  String get templateId;
   @override
   @JsonKey(ignore: true)
   _$$TrainingSessionImplCopyWith<_$TrainingSessionImpl> get copyWith =>

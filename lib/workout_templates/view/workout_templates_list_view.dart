@@ -24,7 +24,7 @@ class WorkoutTemplatesListView extends StatelessWidget {
 
               case BlocStatus.success:
                 return ListView.builder(
-                  padding: AppConstants.padding,
+                  padding: DesignSystem.padding,
                   itemCount: state.templates.length,
                   itemBuilder: (context, index) => WorkoutTemplateCard(
                     template: state.templates[index],

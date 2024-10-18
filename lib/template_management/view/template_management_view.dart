@@ -61,7 +61,7 @@ class _TemplateManagementViewState extends State<TemplateManagementView> {
               return const SizedBox.shrink();
             }
             return ListView.builder(
-              padding: AppConstants.padding,
+              padding: DesignSystem.padding,
               itemCount: template.exercises.length,
               itemBuilder: (context, index) {
                 return TemplateExerciseCard(
@@ -120,9 +120,9 @@ class _TemplateExerciseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: AppConstants.padding,
+      padding: DesignSystem.padding,
       child: Container(
-        padding: AppConstants.padding,
+        padding: DesignSystem.padding,
         decoration: BoxDecoration(
           color: Colors.black.withOpacity(0.02),
           borderRadius: BorderRadius.circular(16),

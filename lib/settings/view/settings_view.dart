@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_app/app/app.dart';
+import 'package:training_app/session_exercise/session_exercise.dart';
 import 'package:training_app/settings/settings.dart';
 
 class SettingsView extends StatelessWidget {
@@ -39,6 +40,24 @@ class SettingsView extends StatelessWidget {
             value: true,
             onChanged: (value) {},
           ),
+          BlocSelector<SettingsCubit, SettingsState, UnitSystem>(
+            selector: (state) {
+              return state.preferredUnitSystem;
+            },
+            builder: (context, preferredUnitSystem) {
+              return _SettingToggle(
+                title: 'Use metric system',
+                value: preferredUnitSystem == UnitSystem.metric,
+                onChanged: (useMetricSystem) {
+                  context.read<SettingsCubit>().setUnitSystem(
+                        unitSystem: useMetricSystem
+                            ? UnitSystem.metric
+                            : UnitSystem.imperial,
+                      );
+                },
+              );
+            },
+          ),
         ],
       ),
     );
@@ -58,7 +77,7 @@ class _SettingToggle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: AppConstants.padding,
+      padding: DesignSystem.padding,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

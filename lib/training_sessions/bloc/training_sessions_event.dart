@@ -5,6 +5,8 @@ class TrainingSessionsEvent with _$TrainingSessionsEvent {
   const factory TrainingSessionsEvent.fetch() = _Fetch;
   const factory TrainingSessionsEvent.create(TrainingSession trainingSession) =
       _Create;
+  const factory TrainingSessionsEvent.clone(TrainingSession trainingSession) =
+      _Clone;
   const factory TrainingSessionsEvent.delete({
     required TrainingSession trainingSession,
   }) = _Delete;

@@ -211,4 +211,15 @@ class TrainingSessionHiveRepository implements ITrainingSessionRepository {
       session: session,
     );
   }
+
+  @override
+  Future<Either<AppError, TrainingSession>> cloneSession({
+    required TrainingSession session,
+  }) {
+    return create(
+      TrainingSession.clone(
+        session: session,
+      ),
+    );
+  }
 }

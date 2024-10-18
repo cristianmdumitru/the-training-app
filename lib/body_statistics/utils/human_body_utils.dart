@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:training_app/app/app.dart';
+import 'package:training_app/body_statistics/body_statistics.dart';
 
 class HumanBodyUtils {
   static double get lowOpacity => 0.2;
@@ -24,5 +26,24 @@ class HumanBodyUtils {
       return Colors.red.shade900.withOpacity(pastelOpacity);
     }
     return Colors.transparent;
+  }
+
+  static List<Widget> getMuscleGroups({
+    required BodyView bodyView,
+    required BodyBehavior behavior,
+  }) {
+    final muscleGroups = switch (bodyView) {
+      BodyView.back => AppConstants.backMuscles,
+      BodyView.front => AppConstants.frontMuscles,
+    };
+    return muscleGroups
+        .map(
+          (muscleGroup) => MuscleGroupWidget(
+            muscleGroup: muscleGroup,
+            bodyView: bodyView,
+            behavior: behavior,
+          ),
+        )
+        .toList();
   }
 }

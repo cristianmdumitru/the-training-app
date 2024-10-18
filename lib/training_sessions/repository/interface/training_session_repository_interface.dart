@@ -39,4 +39,8 @@ abstract interface class ITrainingSessionRepository
     required SessionExercise exercise,
     required TrainingSession session,
   });
+
+  Future<Either<AppError, TrainingSession>> cloneSession({
+    required TrainingSession session,
+  });
 }

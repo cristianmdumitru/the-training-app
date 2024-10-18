@@ -22,12 +22,31 @@ class _SelectWorkoutTemplateModalState
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: AppConstants.padding,
+          padding: DesignSystem.padding,
           child: Column(
             children: <Widget>[
-              const Row(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Choose template(s)'),
+                  const Text('Choose template(s)'),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_templates.isNotEmpty) {
+                        Navigator.of(context).pop(_templates.values.toList());
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Please select at least one template.',
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    child: const Text(
+                      'Add selection',
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(
@@ -72,24 +91,6 @@ class _SelectWorkoutTemplateModalState
                     },
                   );
                 },
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  if (_templates.isNotEmpty) {
-                    Navigator.of(context).pop(_templates.values.toList());
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'Please select at least one template.',
-                        ),
-                      ),
-                    );
-                  }
-                },
-                child: const Text(
-                  'Add selected template(s)',
-                ),
               ),
             ],
           ),

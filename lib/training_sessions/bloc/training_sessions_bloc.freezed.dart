@@ -598,12 +598,13 @@ class __$$TrainingSessionsStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TrainingSessionsStateImpl implements _TrainingSessionsState {
+class _$TrainingSessionsStateImpl extends _TrainingSessionsState {
   const _$TrainingSessionsStateImpl(
       {this.status = BlocStatus.idle,
       final List<TrainingSession> sessions = const <TrainingSession>[],
       this.errorMessage})
-      : _sessions = sessions;
+      : _sessions = sessions,
+        super._();
 
   @override
   @JsonKey()
@@ -648,11 +649,12 @@ class _$TrainingSessionsStateImpl implements _TrainingSessionsState {
           _$TrainingSessionsStateImpl>(this, _$identity);
 }
 
-abstract class _TrainingSessionsState implements TrainingSessionsState {
+abstract class _TrainingSessionsState extends TrainingSessionsState {
   const factory _TrainingSessionsState(
       {final BlocStatus status,
       final List<TrainingSession> sessions,
       final String? errorMessage}) = _$TrainingSessionsStateImpl;
+  const _TrainingSessionsState._() : super._();
 
   @override
   BlocStatus get status;

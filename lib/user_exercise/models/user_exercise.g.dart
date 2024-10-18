@@ -21,6 +21,12 @@ class ExerciseTypeAdapter extends TypeAdapter<ExerciseType> {
         return ExerciseType.cardio;
       case 3:
         return ExerciseType.dumbbell;
+      case 4:
+        return ExerciseType.other;
+      case 5:
+        return ExerciseType.cable;
+      case 6:
+        return ExerciseType.machine;
       default:
         return ExerciseType.bodyweight;
     }
@@ -40,6 +46,15 @@ class ExerciseTypeAdapter extends TypeAdapter<ExerciseType> {
         break;
       case ExerciseType.dumbbell:
         writer.writeByte(3);
+        break;
+      case ExerciseType.other:
+        writer.writeByte(4);
+        break;
+      case ExerciseType.cable:
+        writer.writeByte(5);
+        break;
+      case ExerciseType.machine:
+        writer.writeByte(6);
         break;
     }
   }
@@ -70,6 +85,8 @@ class EffortTypeAdapter extends TypeAdapter<EffortType> {
         return EffortType.repRange;
       case 3:
         return EffortType.isometric;
+      case 4:
+        return EffortType.other;
       default:
         return EffortType.rpe;
     }
@@ -89,6 +106,9 @@ class EffortTypeAdapter extends TypeAdapter<EffortType> {
         break;
       case EffortType.isometric:
         writer.writeByte(3);
+        break;
+      case EffortType.other:
+        writer.writeByte(4);
         break;
     }
   }
@@ -117,8 +137,8 @@ class UserExerciseImplAdapter extends TypeAdapter<_$UserExerciseImpl> {
     return _$UserExerciseImpl(
       id: fields[0] as String,
       name: fields[1] as String,
-      exerciseType: fields[2] as ExerciseType,
-      effortType: fields[3] as EffortType,
+      exerciseType: fields[2] as ExerciseType?,
+      effortType: fields[3] as EffortType?,
       createdAt: fields[4] as int,
       updatedAt: fields[5] as int,
       targettedMuscleGroups: (fields[6] as List).cast<MuscleGroup>(),
@@ -164,8 +184,9 @@ _$UserExerciseImpl _$$UserExerciseImplFromJson(Map<String, dynamic> json) =>
     _$UserExerciseImpl(
       id: json['id'] as String,
       name: json['name'] as String,
-      exerciseType: $enumDecode(_$ExerciseTypeEnumMap, json['exerciseType']),
-      effortType: $enumDecode(_$EffortTypeEnumMap, json['effortType']),
+      exerciseType:
+          $enumDecodeNullable(_$ExerciseTypeEnumMap, json['exerciseType']),
+      effortType: $enumDecodeNullable(_$EffortTypeEnumMap, json['effortType']),
       createdAt: (json['createdAt'] as num).toInt(),
       updatedAt: (json['updatedAt'] as num).toInt(),
       targettedMuscleGroups: (json['targettedMuscleGroups'] as List<dynamic>)
@@ -177,8 +198,8 @@ Map<String, dynamic> _$$UserExerciseImplToJson(_$UserExerciseImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'exerciseType': _$ExerciseTypeEnumMap[instance.exerciseType]!,
-      'effortType': _$EffortTypeEnumMap[instance.effortType]!,
+      'exerciseType': _$ExerciseTypeEnumMap[instance.exerciseType],
+      'effortType': _$EffortTypeEnumMap[instance.effortType],
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
       'targettedMuscleGroups': instance.targettedMuscleGroups
@@ -191,6 +212,9 @@ const _$ExerciseTypeEnumMap = {
   ExerciseType.barbell: 'barbell',
   ExerciseType.cardio: 'cardio',
   ExerciseType.dumbbell: 'dumbbell',
+  ExerciseType.other: 'other',
+  ExerciseType.cable: 'cable',
+  ExerciseType.machine: 'machine',
 };
 
 const _$EffortTypeEnumMap = {
@@ -198,6 +222,7 @@ const _$EffortTypeEnumMap = {
   EffortType.rir: 'rir',
   EffortType.repRange: 'repRange',
   EffortType.isometric: 'isometric',
+  EffortType.other: 'other',
 };
 
 const _$MuscleGroupEnumMap = {

@@ -30,6 +30,10 @@ mixin _$ExerciseSet {
   int get effortRating => throw _privateConstructorUsedError;
   @HiveField(4)
   int get effortUnit => throw _privateConstructorUsedError;
+  @HiveField(5)
+  UnitSystem get unitSystem => throw _privateConstructorUsedError;
+  @HiveField(6)
+  int get restTimeInSeconds => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,7 +52,9 @@ abstract class $ExerciseSetCopyWith<$Res> {
       @HiveField(1) String sessionExerciseId,
       @HiveField(2) double load,
       @HiveField(3) int effortRating,
-      @HiveField(4) int effortUnit});
+      @HiveField(4) int effortUnit,
+      @HiveField(5) UnitSystem unitSystem,
+      @HiveField(6) int restTimeInSeconds});
 }
 
 /// @nodoc
@@ -69,6 +75,8 @@ class _$ExerciseSetCopyWithImpl<$Res, $Val extends ExerciseSet>
     Object? load = null,
     Object? effortRating = null,
     Object? effortUnit = null,
+    Object? unitSystem = null,
+    Object? restTimeInSeconds = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -91,6 +99,14 @@ class _$ExerciseSetCopyWithImpl<$Res, $Val extends ExerciseSet>
           ? _value.effortUnit
           : effortUnit // ignore: cast_nullable_to_non_nullable
               as int,
+      unitSystem: null == unitSystem
+          ? _value.unitSystem
+          : unitSystem // ignore: cast_nullable_to_non_nullable
+              as UnitSystem,
+      restTimeInSeconds: null == restTimeInSeconds
+          ? _value.restTimeInSeconds
+          : restTimeInSeconds // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -108,7 +124,9 @@ abstract class _$$ExerciseSetImplCopyWith<$Res>
       @HiveField(1) String sessionExerciseId,
       @HiveField(2) double load,
       @HiveField(3) int effortRating,
-      @HiveField(4) int effortUnit});
+      @HiveField(4) int effortUnit,
+      @HiveField(5) UnitSystem unitSystem,
+      @HiveField(6) int restTimeInSeconds});
 }
 
 /// @nodoc
@@ -127,6 +145,8 @@ class __$$ExerciseSetImplCopyWithImpl<$Res>
     Object? load = null,
     Object? effortRating = null,
     Object? effortUnit = null,
+    Object? unitSystem = null,
+    Object? restTimeInSeconds = null,
   }) {
     return _then(_$ExerciseSetImpl(
       id: null == id
@@ -149,6 +169,14 @@ class __$$ExerciseSetImplCopyWithImpl<$Res>
           ? _value.effortUnit
           : effortUnit // ignore: cast_nullable_to_non_nullable
               as int,
+      unitSystem: null == unitSystem
+          ? _value.unitSystem
+          : unitSystem // ignore: cast_nullable_to_non_nullable
+              as UnitSystem,
+      restTimeInSeconds: null == restTimeInSeconds
+          ? _value.restTimeInSeconds
+          : restTimeInSeconds // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -162,7 +190,9 @@ class _$ExerciseSetImpl implements _ExerciseSet {
       @HiveField(1) required this.sessionExerciseId,
       @HiveField(2) required this.load,
       @HiveField(3) required this.effortRating,
-      @HiveField(4) required this.effortUnit});
+      @HiveField(4) required this.effortUnit,
+      @HiveField(5) required this.unitSystem,
+      @HiveField(6) required this.restTimeInSeconds});
 
   factory _$ExerciseSetImpl.fromJson(Map<String, dynamic> json) =>
       _$$ExerciseSetImplFromJson(json);
@@ -182,10 +212,16 @@ class _$ExerciseSetImpl implements _ExerciseSet {
   @override
   @HiveField(4)
   final int effortUnit;
+  @override
+  @HiveField(5)
+  final UnitSystem unitSystem;
+  @override
+  @HiveField(6)
+  final int restTimeInSeconds;
 
   @override
   String toString() {
-    return 'ExerciseSet(id: $id, sessionExerciseId: $sessionExerciseId, load: $load, effortRating: $effortRating, effortUnit: $effortUnit)';
+    return 'ExerciseSet(id: $id, sessionExerciseId: $sessionExerciseId, load: $load, effortRating: $effortRating, effortUnit: $effortUnit, unitSystem: $unitSystem, restTimeInSeconds: $restTimeInSeconds)';
   }
 
   @override
@@ -200,13 +236,17 @@ class _$ExerciseSetImpl implements _ExerciseSet {
             (identical(other.effortRating, effortRating) ||
                 other.effortRating == effortRating) &&
             (identical(other.effortUnit, effortUnit) ||
-                other.effortUnit == effortUnit));
+                other.effortUnit == effortUnit) &&
+            (identical(other.unitSystem, unitSystem) ||
+                other.unitSystem == unitSystem) &&
+            (identical(other.restTimeInSeconds, restTimeInSeconds) ||
+                other.restTimeInSeconds == restTimeInSeconds));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, sessionExerciseId, load, effortRating, effortUnit);
+  int get hashCode => Object.hash(runtimeType, id, sessionExerciseId, load,
+      effortRating, effortUnit, unitSystem, restTimeInSeconds);
 
   @JsonKey(ignore: true)
   @override
@@ -228,7 +268,9 @@ abstract class _ExerciseSet implements ExerciseSet {
       @HiveField(1) required final String sessionExerciseId,
       @HiveField(2) required final double load,
       @HiveField(3) required final int effortRating,
-      @HiveField(4) required final int effortUnit}) = _$ExerciseSetImpl;
+      @HiveField(4) required final int effortUnit,
+      @HiveField(5) required final UnitSystem unitSystem,
+      @HiveField(6) required final int restTimeInSeconds}) = _$ExerciseSetImpl;
 
   factory _ExerciseSet.fromJson(Map<String, dynamic> json) =
       _$ExerciseSetImpl.fromJson;
@@ -248,6 +290,12 @@ abstract class _ExerciseSet implements ExerciseSet {
   @override
   @HiveField(4)
   int get effortUnit;
+  @override
+  @HiveField(5)
+  UnitSystem get unitSystem;
+  @override
+  @HiveField(6)
+  int get restTimeInSeconds;
   @override
   @JsonKey(ignore: true)
   _$$ExerciseSetImplCopyWith<_$ExerciseSetImpl> get copyWith =>

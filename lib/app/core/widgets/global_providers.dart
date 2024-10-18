@@ -20,12 +20,15 @@ class GlobalProviders extends StatelessWidget {
           create: (_) => getIt<SettingsCubit>(),
         ),
         BlocProvider(
+          lazy: false,
           create: (_) => getIt<TrainingSessionsBloc>(),
         ),
         BlocProvider(
+          lazy: false,
           create: (_) => getIt<UserExercisesBloc>(),
         ),
         BlocProvider(
+          lazy: false,
           create: (_) => getIt<WorkoutTemplatesBloc>(),
         ),
       ],

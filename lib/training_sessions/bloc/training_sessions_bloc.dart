@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -22,6 +23,7 @@ class TrainingSessionsBloc
     on<_Fetch>(_onFetchTrainingSessions);
     on<_Create>(_onCreateTrainingSession);
     on<_Delete>(_onDeleteTrainingSession);
+    on<_Clone>(_onCloneTrainingSession);
     add(const _Fetch());
   }
 
@@ -86,6 +88,26 @@ class TrainingSessionsBloc
         ),
       ),
       (didCreate) => add(const _Fetch()),
+    );
+  }
+
+  Future<void> _onCloneTrainingSession(
+    _Clone event,
+    Emitter<TrainingSessionsState> emit,
+  ) async {
+    final result = await _trainingSessionRepository.create(
+      event.trainingSession,
+    );
+    result.fold(
+      (error) => emit(
+        state.copyWith(
+          status: BlocStatus.error,
+          errorMessage: error.message,
+        ),
+      ),
+      (didClone) => add(
+        const TrainingSessionsEvent.fetch(),
+      ),
     );
   }
 }
