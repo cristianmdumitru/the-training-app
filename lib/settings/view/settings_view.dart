@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_positional_boolean_parameters
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_app/app/app.dart';
@@ -12,10 +10,8 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Settings',
-        ),
+      appBar: const CustomAppBar(
+        title: 'Settings',
       ),
       body: ListView(
         children: [

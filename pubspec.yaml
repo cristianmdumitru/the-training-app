@@ -1,11 +1,11 @@
 name: training_app
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.4.1 <4.0.0'
+  sdk: ">=3.4.1 <4.0.0"
 
 dependencies:
   appcheck: ^1.5.2
@@ -22,6 +22,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   freezed_annotation: ^2.4.1
   get_it: ^7.7.0
+  go_router: ^14.8.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   hydrated_bloc: ^9.1.5
@@ -48,5 +49,7 @@ flutter:
   uses-material-design: true
   generate: true
   assets:
+    - assets/svg/
+    - assets/svg/buttons/
     - assets/svg/male_body/front/
     - assets/svg/male_body/back/

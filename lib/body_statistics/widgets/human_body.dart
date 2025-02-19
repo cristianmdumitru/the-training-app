@@ -15,7 +15,7 @@ class HumanBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 500,
+      height: 700,
       child: Stack(
         children: [
           _buildBackground(

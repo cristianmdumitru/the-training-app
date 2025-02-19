@@ -13,6 +13,9 @@ class UserExercisesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppBar(
+        title: 'Your exercises',
+      ),
       body: Center(
         child: BlocBuilder<UserExercisesBloc, UserExercisesState>(
           builder: (context, state) {
@@ -27,8 +30,11 @@ class UserExercisesView extends StatelessWidget {
                   key: const Key('exercises'),
                   padding: DesignSystem.padding,
                   itemCount: state.exercises.length,
-                  itemBuilder: (context, index) => UserExerciseCard(
-                    userExercise: state.exercises[index],
+                  itemBuilder: (context, index) => Padding(
+                    padding: DesignSystem.bottomMargin,
+                    child: UserExerciseCard(
+                      userExercise: state.exercises[index],
+                    ),
                   ),
                 );
               case BlocStatus.error:

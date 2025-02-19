@@ -7,7 +7,6 @@ class TrainingSessionsEvent with _$TrainingSessionsEvent {
       _Create;
   const factory TrainingSessionsEvent.clone(TrainingSession trainingSession) =
       _Clone;
-  const factory TrainingSessionsEvent.delete({
-    required TrainingSession trainingSession,
-  }) = _Delete;
+  const factory TrainingSessionsEvent.delete(TrainingSession trainingSession) =
+      _Delete;
 }

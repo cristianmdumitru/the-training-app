@@ -1,0 +1,2 @@
+/Users/chris/dev_work/old_training_app/android/app/.cxx/Debug/5r4n5u3f/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+/Users/chris/dev_work/old_training_app/android/app/.cxx/Debug/5r4n5u3f/armeabi-v7a/CMakeFiles/edit_cache.dir

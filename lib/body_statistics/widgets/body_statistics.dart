@@ -11,13 +11,17 @@ class BodyStatistics extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<BodyStatisticsCubit>()..getSessions(),
       child: const Scaffold(
-        body: Column(
-          children: [
-            _StatisticsCard(),
-            BodySwitcher(
-              behavior: BodyBehavior.displayStatistics,
-            ),
-          ],
+        appBar: CustomAppBar(title: 'Body statistics'),
+        body: Padding(
+          padding: DesignSystem.padding,
+          child: Column(
+            children: [
+              _StatisticsCard(),
+              BodySwitcher(
+                behavior: BodyBehavior.displayStatistics,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -31,31 +35,25 @@ class _StatisticsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BodyStatisticsCubit, BodyStatisticsState>(
       builder: (context, state) {
-        return Padding(
-          padding: DesignSystem.padding,
-          child: Card(
-            child: Padding(
-              padding: DesignSystem.padding,
-              child: Column(
-                children: [
-                  _buildCustomRow(
-                    context: context,
-                    primaryText: '${state.lastSessions.length}',
-                    secondaryText: '${state.tonnage} KG',
-                    ternaryText: '${(state.coverage * 100).toInt()}%',
-                    isSecondRow: false,
-                  ),
-                  _buildCustomRow(
-                    context: context,
-                    primaryText:
-                        state.lastSessions.length == 1 ? 'Session' : 'Sessions',
-                    secondaryText: 'Accumulated tonnage',
-                    ternaryText: 'Coverage',
-                    isSecondRow: true,
-                  ),
-                ],
+        return MainCard(
+          child: Column(
+            children: [
+              _buildCustomRow(
+                context: context,
+                primaryText: '${state.lastSessions.length}',
+                secondaryText: '${state.tonnage} KG',
+                ternaryText: '${(state.coverage * 100).toInt()}%',
+                isSecondRow: false,
               ),
-            ),
+              _buildCustomRow(
+                context: context,
+                primaryText:
+                    state.lastSessions.length == 1 ? 'Session' : 'Sessions',
+                secondaryText: 'Accumulated tonnage',
+                ternaryText: 'Coverage',
+                isSecondRow: true,
+              ),
+            ],
           ),
         );
       },

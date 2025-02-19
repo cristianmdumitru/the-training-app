@@ -30,24 +30,20 @@ class UserExerciseCard extends StatelessWidget {
               );
         }
       },
-      child: Card(
-        margin: DesignSystem.bottomMargin,
-        child: Padding(
-          padding: DesignSystem.leftPadding,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(userExercise.name),
-              IconButton(
-                onPressed: () {
-                  context.read<UserExercisesBloc>().add(
-                        UserExercisesEvent.delete(userExercise),
-                      );
-                },
-                icon: const Icon(Icons.delete),
-              ),
-            ],
-          ),
+      child: MainCard(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(userExercise.name),
+            IconButton(
+              onPressed: () {
+                context.read<UserExercisesBloc>().add(
+                      UserExercisesEvent.delete(userExercise),
+                    );
+              },
+              icon: const Icon(Icons.delete),
+            ),
+          ],
         ),
       ),
     );

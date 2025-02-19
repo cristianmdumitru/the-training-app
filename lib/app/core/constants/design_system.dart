@@ -8,9 +8,12 @@ class DesignSystem {
   static const SizedBox scrollableMargin = SizedBox(
     height: 64,
   );
+  static const EdgeInsets buttonPadding = EdgeInsets.all(8);
   static const EdgeInsets padding = EdgeInsets.all(16);
   static const EdgeInsets bottomMargin = EdgeInsets.only(bottom: 8);
   static const EdgeInsets verticalMargin = EdgeInsets.symmetric(vertical: 16);
+  static const EdgeInsets bottomNavBarPadding =
+      EdgeInsets.symmetric(horizontal: 32);
   static const EdgeInsets horizontalMargin =
       EdgeInsets.symmetric(horizontal: 16);
   static const EdgeInsets horizontalPadding =
@@ -21,6 +24,9 @@ class DesignSystem {
   static const double medBorderRadiusValue = 16;
   static final BorderRadius medBorderRadius =
       BorderRadius.circular(medBorderRadiusValue);
+  static const double smallBorderRadiusValue = 8;
+  static final BorderRadius smallBorderRadius =
+      BorderRadius.circular(smallBorderRadiusValue);
 
   static final OutlineInputBorder enabledInputBorder = OutlineInputBorder(
     borderSide: BorderSide(

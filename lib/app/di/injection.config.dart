@@ -11,13 +11,15 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../../body_statistics/cubit/body_statistics_cubit.dart' as _i17;
+import '../../body_statistics/cubit/body_statistics_cubit.dart' as _i18;
 import '../../database/database.dart' as _i7;
 import '../../database/service/hive_service.dart' as _i4;
-import '../../session_management/bloc/session_management_bloc.dart' as _i16;
+import '../../session_management/bloc/session_management_bloc.dart' as _i17;
 import '../../settings/cubit/settings_cubit.dart' as _i3;
 import '../../template_management/bloc/template_management_bloc.dart' as _i10;
-import '../../training_sessions/bloc/training_sessions_bloc.dart' as _i15;
+import '../../training_sessions/bloc/training_sessions_bloc.dart' as _i16;
+import '../../training_sessions/cubit/delete_training_session_cubit.dart'
+    as _i15;
 import '../../training_sessions/repository/training_session_hive_repository.dart'
     as _i12;
 import '../../training_sessions/training_sessions.dart' as _i11;
@@ -58,11 +60,14 @@ extension GetItInjectableX on _i1.GetIt {
         workoutTemplateRepository: gh<_i8.IWorkoutTemplateRepository>()));
     gh.factory<_i14.UserExercisesBloc>(() => _i14.UserExercisesBloc(
         userExerciseRepository: gh<_i5.IUserExerciseRepository>()));
-    gh.factory<_i15.TrainingSessionsBloc>(() => _i15.TrainingSessionsBloc(
+    gh.factory<_i15.DeleteTrainingSessionCubit>(() =>
+        _i15.DeleteTrainingSessionCubit(
+            trainingSessionRepository: gh<_i11.ITrainingSessionRepository>()));
+    gh.factory<_i16.TrainingSessionsBloc>(() => _i16.TrainingSessionsBloc(
         trainingSessionRepository: gh<_i11.ITrainingSessionRepository>()));
-    gh.factory<_i16.SessionManagementBloc>(() => _i16.SessionManagementBloc(
+    gh.factory<_i17.SessionManagementBloc>(() => _i17.SessionManagementBloc(
         trainingSessionRepository: gh<_i11.ITrainingSessionRepository>()));
-    gh.factory<_i17.BodyStatisticsCubit>(() => _i17.BodyStatisticsCubit(
+    gh.factory<_i18.BodyStatisticsCubit>(() => _i18.BodyStatisticsCubit(
         trainingSessionsRepository: gh<_i11.ITrainingSessionRepository>()));
     return this;
   }

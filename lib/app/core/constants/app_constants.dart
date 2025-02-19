@@ -56,4 +56,6 @@ class AppConstants {
     MuscleGroup.extensorDigitorum,
     MuscleGroup.upperObliques,
   ];
+
+  static const double navBarHeight = 74;
 }

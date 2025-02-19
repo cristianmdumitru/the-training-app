@@ -20,6 +20,7 @@ mixin _$TrainingSessionsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
     required TResult Function(TrainingSession trainingSession) create,
+    required TResult Function(TrainingSession trainingSession) clone,
     required TResult Function(TrainingSession trainingSession) delete,
   }) =>
       throw _privateConstructorUsedError;
@@ -27,6 +28,7 @@ mixin _$TrainingSessionsEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
     TResult? Function(TrainingSession trainingSession)? create,
+    TResult? Function(TrainingSession trainingSession)? clone,
     TResult? Function(TrainingSession trainingSession)? delete,
   }) =>
       throw _privateConstructorUsedError;
@@ -34,6 +36,7 @@ mixin _$TrainingSessionsEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
     TResult Function(TrainingSession trainingSession)? create,
+    TResult Function(TrainingSession trainingSession)? clone,
     TResult Function(TrainingSession trainingSession)? delete,
     required TResult orElse(),
   }) =>
@@ -42,6 +45,7 @@ mixin _$TrainingSessionsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetch value) fetch,
     required TResult Function(_Create value) create,
+    required TResult Function(_Clone value) clone,
     required TResult Function(_Delete value) delete,
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +53,7 @@ mixin _$TrainingSessionsEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Fetch value)? fetch,
     TResult? Function(_Create value)? create,
+    TResult? Function(_Clone value)? clone,
     TResult? Function(_Delete value)? delete,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +61,7 @@ mixin _$TrainingSessionsEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetch value)? fetch,
     TResult Function(_Create value)? create,
+    TResult Function(_Clone value)? clone,
     TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) =>
@@ -121,6 +127,7 @@ class _$FetchImpl implements _Fetch {
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
     required TResult Function(TrainingSession trainingSession) create,
+    required TResult Function(TrainingSession trainingSession) clone,
     required TResult Function(TrainingSession trainingSession) delete,
   }) {
     return fetch();
@@ -131,6 +138,7 @@ class _$FetchImpl implements _Fetch {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
     TResult? Function(TrainingSession trainingSession)? create,
+    TResult? Function(TrainingSession trainingSession)? clone,
     TResult? Function(TrainingSession trainingSession)? delete,
   }) {
     return fetch?.call();
@@ -141,6 +149,7 @@ class _$FetchImpl implements _Fetch {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
     TResult Function(TrainingSession trainingSession)? create,
+    TResult Function(TrainingSession trainingSession)? clone,
     TResult Function(TrainingSession trainingSession)? delete,
     required TResult orElse(),
   }) {
@@ -155,6 +164,7 @@ class _$FetchImpl implements _Fetch {
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetch value) fetch,
     required TResult Function(_Create value) create,
+    required TResult Function(_Clone value) clone,
     required TResult Function(_Delete value) delete,
   }) {
     return fetch(this);
@@ -165,6 +175,7 @@ class _$FetchImpl implements _Fetch {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Fetch value)? fetch,
     TResult? Function(_Create value)? create,
+    TResult? Function(_Clone value)? clone,
     TResult? Function(_Delete value)? delete,
   }) {
     return fetch?.call(this);
@@ -175,6 +186,7 @@ class _$FetchImpl implements _Fetch {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetch value)? fetch,
     TResult Function(_Create value)? create,
+    TResult Function(_Clone value)? clone,
     TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
@@ -266,6 +278,7 @@ class _$CreateImpl implements _Create {
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
     required TResult Function(TrainingSession trainingSession) create,
+    required TResult Function(TrainingSession trainingSession) clone,
     required TResult Function(TrainingSession trainingSession) delete,
   }) {
     return create(trainingSession);
@@ -276,6 +289,7 @@ class _$CreateImpl implements _Create {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
     TResult? Function(TrainingSession trainingSession)? create,
+    TResult? Function(TrainingSession trainingSession)? clone,
     TResult? Function(TrainingSession trainingSession)? delete,
   }) {
     return create?.call(trainingSession);
@@ -286,6 +300,7 @@ class _$CreateImpl implements _Create {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
     TResult Function(TrainingSession trainingSession)? create,
+    TResult Function(TrainingSession trainingSession)? clone,
     TResult Function(TrainingSession trainingSession)? delete,
     required TResult orElse(),
   }) {
@@ -300,6 +315,7 @@ class _$CreateImpl implements _Create {
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetch value) fetch,
     required TResult Function(_Create value) create,
+    required TResult Function(_Clone value) clone,
     required TResult Function(_Delete value) delete,
   }) {
     return create(this);
@@ -310,6 +326,7 @@ class _$CreateImpl implements _Create {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Fetch value)? fetch,
     TResult? Function(_Create value)? create,
+    TResult? Function(_Clone value)? clone,
     TResult? Function(_Delete value)? delete,
   }) {
     return create?.call(this);
@@ -320,6 +337,7 @@ class _$CreateImpl implements _Create {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetch value)? fetch,
     TResult Function(_Create value)? create,
+    TResult Function(_Clone value)? clone,
     TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
@@ -336,6 +354,162 @@ abstract class _Create implements TrainingSessionsEvent {
   TrainingSession get trainingSession;
   @JsonKey(ignore: true)
   _$$CreateImplCopyWith<_$CreateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CloneImplCopyWith<$Res> {
+  factory _$$CloneImplCopyWith(
+          _$CloneImpl value, $Res Function(_$CloneImpl) then) =
+      __$$CloneImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TrainingSession trainingSession});
+
+  $TrainingSessionCopyWith<$Res> get trainingSession;
+}
+
+/// @nodoc
+class __$$CloneImplCopyWithImpl<$Res>
+    extends _$TrainingSessionsEventCopyWithImpl<$Res, _$CloneImpl>
+    implements _$$CloneImplCopyWith<$Res> {
+  __$$CloneImplCopyWithImpl(
+      _$CloneImpl _value, $Res Function(_$CloneImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? trainingSession = null,
+  }) {
+    return _then(_$CloneImpl(
+      null == trainingSession
+          ? _value.trainingSession
+          : trainingSession // ignore: cast_nullable_to_non_nullable
+              as TrainingSession,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TrainingSessionCopyWith<$Res> get trainingSession {
+    return $TrainingSessionCopyWith<$Res>(_value.trainingSession, (value) {
+      return _then(_value.copyWith(trainingSession: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$CloneImpl implements _Clone {
+  const _$CloneImpl(this.trainingSession);
+
+  @override
+  final TrainingSession trainingSession;
+
+  @override
+  String toString() {
+    return 'TrainingSessionsEvent.clone(trainingSession: $trainingSession)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CloneImpl &&
+            (identical(other.trainingSession, trainingSession) ||
+                other.trainingSession == trainingSession));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, trainingSession);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CloneImplCopyWith<_$CloneImpl> get copyWith =>
+      __$$CloneImplCopyWithImpl<_$CloneImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function(TrainingSession trainingSession) create,
+    required TResult Function(TrainingSession trainingSession) clone,
+    required TResult Function(TrainingSession trainingSession) delete,
+  }) {
+    return clone(trainingSession);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function(TrainingSession trainingSession)? create,
+    TResult? Function(TrainingSession trainingSession)? clone,
+    TResult? Function(TrainingSession trainingSession)? delete,
+  }) {
+    return clone?.call(trainingSession);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function(TrainingSession trainingSession)? create,
+    TResult Function(TrainingSession trainingSession)? clone,
+    TResult Function(TrainingSession trainingSession)? delete,
+    required TResult orElse(),
+  }) {
+    if (clone != null) {
+      return clone(trainingSession);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_Create value) create,
+    required TResult Function(_Clone value) clone,
+    required TResult Function(_Delete value) delete,
+  }) {
+    return clone(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_Create value)? create,
+    TResult? Function(_Clone value)? clone,
+    TResult? Function(_Delete value)? delete,
+  }) {
+    return clone?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_Create value)? create,
+    TResult Function(_Clone value)? clone,
+    TResult Function(_Delete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (clone != null) {
+      return clone(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Clone implements TrainingSessionsEvent {
+  const factory _Clone(final TrainingSession trainingSession) = _$CloneImpl;
+
+  TrainingSession get trainingSession;
+  @JsonKey(ignore: true)
+  _$$CloneImplCopyWith<_$CloneImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -364,7 +538,7 @@ class __$$DeleteImplCopyWithImpl<$Res>
     Object? trainingSession = null,
   }) {
     return _then(_$DeleteImpl(
-      trainingSession: null == trainingSession
+      null == trainingSession
           ? _value.trainingSession
           : trainingSession // ignore: cast_nullable_to_non_nullable
               as TrainingSession,
@@ -383,7 +557,7 @@ class __$$DeleteImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DeleteImpl implements _Delete {
-  const _$DeleteImpl({required this.trainingSession});
+  const _$DeleteImpl(this.trainingSession);
 
   @override
   final TrainingSession trainingSession;
@@ -416,6 +590,7 @@ class _$DeleteImpl implements _Delete {
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
     required TResult Function(TrainingSession trainingSession) create,
+    required TResult Function(TrainingSession trainingSession) clone,
     required TResult Function(TrainingSession trainingSession) delete,
   }) {
     return delete(trainingSession);
@@ -426,6 +601,7 @@ class _$DeleteImpl implements _Delete {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
     TResult? Function(TrainingSession trainingSession)? create,
+    TResult? Function(TrainingSession trainingSession)? clone,
     TResult? Function(TrainingSession trainingSession)? delete,
   }) {
     return delete?.call(trainingSession);
@@ -436,6 +612,7 @@ class _$DeleteImpl implements _Delete {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
     TResult Function(TrainingSession trainingSession)? create,
+    TResult Function(TrainingSession trainingSession)? clone,
     TResult Function(TrainingSession trainingSession)? delete,
     required TResult orElse(),
   }) {
@@ -450,6 +627,7 @@ class _$DeleteImpl implements _Delete {
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetch value) fetch,
     required TResult Function(_Create value) create,
+    required TResult Function(_Clone value) clone,
     required TResult Function(_Delete value) delete,
   }) {
     return delete(this);
@@ -460,6 +638,7 @@ class _$DeleteImpl implements _Delete {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Fetch value)? fetch,
     TResult? Function(_Create value)? create,
+    TResult? Function(_Clone value)? clone,
     TResult? Function(_Delete value)? delete,
   }) {
     return delete?.call(this);
@@ -470,6 +649,7 @@ class _$DeleteImpl implements _Delete {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetch value)? fetch,
     TResult Function(_Create value)? create,
+    TResult Function(_Clone value)? clone,
     TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
@@ -481,8 +661,7 @@ class _$DeleteImpl implements _Delete {
 }
 
 abstract class _Delete implements TrainingSessionsEvent {
-  const factory _Delete({required final TrainingSession trainingSession}) =
-      _$DeleteImpl;
+  const factory _Delete(final TrainingSession trainingSession) = _$DeleteImpl;
 
   TrainingSession get trainingSession;
   @JsonKey(ignore: true)

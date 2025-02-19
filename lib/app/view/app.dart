@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:training_app/app/app.dart';
-import 'package:training_app/body_statistics/body_statistics.dart';
 import 'package:training_app/settings/settings.dart';
-import 'package:training_app/training_sessions/training_sessions.dart';
-import 'package:training_app/user_exercise/user_exercise.dart';
-import 'package:training_app/workout_templates/workout_templates.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -18,11 +15,12 @@ class App extends StatelessWidget {
           return state.isDarkMode;
         },
         builder: (context, isDarkMode) {
-          return MaterialApp(
+          return MaterialApp.router(
             theme: isDarkMode
                 ? AppTheme.darkColorScheme
                 : AppTheme.lightColorScheme,
-            home: const _AppPageView(),
+            routerConfig: AppRouter.router,
+            builder: (context, child) => child!,
           );
         },
       ),
@@ -30,102 +28,22 @@ class App extends StatelessWidget {
   }
 }
 
-class _AppPageView extends StatefulWidget {
-  const _AppPageView();
-
-  @override
-  State<_AppPageView> createState() => _AppPageViewState();
-}
-
-class _AppPageViewState extends State<_AppPageView> {
-  int _currentIndex = 0;
-  late final PageController _pageController;
-  @override
-  void initState() {
-    _pageController = PageController();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  void _onPageChanged(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
+class AppPageView extends StatelessWidget {
+  const AppPageView({
+    required this.state,
+    required this.child,
+    super.key,
+  });
+  final GoRouterState state;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: _getTitleByIndex(_currentIndex),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (context) => const SettingsView(),
-                ),
-              );
-            },
-            icon: const Icon(Icons.settings),
-          ),
-        ],
-      ),
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: _onPageChanged,
-        children: const [
-          BodyStatistics(),
-          TrainingSessionsListView(),
-          WorkoutTemplatesListView(),
-          UserExercisesView(),
-        ],
-      ),
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) {
-          setState(() {
-            _currentIndex = index;
-          });
-          _pageController.jumpToPage(index);
-        },
-        selectedIndex: _currentIndex,
-        destinations: const <Widget>[
-          NavigationDestination(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.book),
-            label: 'Log',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.note),
-            label: 'Templates',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.fitness_center),
-            label: 'Exercises',
-          ),
-        ],
+      body: child,
+      bottomNavigationBar: AppNavBar(
+        state: state,
       ),
     );
-  }
-
-  Widget _getTitleByIndex(int currentIndex) {
-    switch (currentIndex) {
-      case 0:
-        return const Text('Training history');
-      case 1:
-        return const Text('Your training sessions');
-      case 2:
-        return const Text('Workout templates');
-      default:
-        return const Text('Exercise library');
-    }
   }
 }

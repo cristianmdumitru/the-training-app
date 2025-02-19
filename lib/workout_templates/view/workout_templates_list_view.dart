@@ -3,15 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training_app/app/app.dart';
 import 'package:training_app/workout_templates/workout_templates.dart';
 
-/// {@template user_exercises_view}
-/// Displays the Body of the UserExercisePage.
-/// {@endtemplate}
 class WorkoutTemplatesListView extends StatelessWidget {
   const WorkoutTemplatesListView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppBar(
+        title: 'Your workouts',
+      ),
       body: Center(
         child: BlocBuilder<WorkoutTemplatesBloc, WorkoutTemplatesState>(
           builder: (context, state) {

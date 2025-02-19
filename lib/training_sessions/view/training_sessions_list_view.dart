@@ -4,15 +4,15 @@ import 'package:training_app/app/app.dart';
 import 'package:training_app/training_sessions/training_sessions.dart';
 import 'package:training_app/workout_templates/workout_templates.dart';
 
-/// {@template user_exercises_view}
-/// Displays the Body of the UserExercisePage.
-/// {@endtemplate}
 class TrainingSessionsListView extends StatelessWidget {
   const TrainingSessionsListView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppBar(
+        title: 'Training journal',
+      ),
       body: Center(
         child: BlocBuilder<TrainingSessionsBloc, TrainingSessionsState>(
           builder: (context, state) {

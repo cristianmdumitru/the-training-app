@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -41,25 +42,55 @@ class TrainingSessionCard extends StatelessWidget {
                   Text(trainingSession.name),
                   Row(
                     children: [
-                      IconButton(
-                        onPressed: () {
-                          context.read<TrainingSessionsBloc>().add(
-                                TrainingSessionsEvent.clone(
-                                  trainingSession: trainingSession,
-                                ),
+                      BlocProvider(
+                        create: (_) => getIt<DeleteTrainingSessionCubit>(),
+                        child: MultiBlocListener(
+                          listeners: [
+                            BlocListener<DeleteTrainingSessionCubit,
+                                DeleteTrainingSessionState>(
+                              listenWhen: (previous, current) =>
+                                  previous.status.isLoading &&
+                                  current.status.isSuccess,
+                              listener: (context, state) {
+                                context.read<TrainingSessionsBloc>().add(
+                                      const TrainingSessionsEvent.fetch(),
+                                    );
+                              },
+                            ),
+                            BlocListener<DeleteTrainingSessionCubit,
+                                DeleteTrainingSessionState>(
+                              listenWhen: (previous, current) =>
+                                  previous.status.isLoading &&
+                                  current.status.isError,
+                              listener: (context, state) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      state.error!.message,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                          child: BlocBuilder<DeleteTrainingSessionCubit,
+                              DeleteTrainingSessionState>(
+                            builder: (context, state) {
+                              return IconButton(
+                                onPressed: () {
+                                  context
+                                      .read<DeleteTrainingSessionCubit>()
+                                      .delete(
+                                        session: trainingSession,
+                                      );
+                                },
+                                icon: state.status.isLoading
+                                    ? const CupertinoActivityIndicator()
+                                    : const Icon(Icons.delete),
                               );
-                        },
-                        icon: const Icon(Icons.copy),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          context.read<TrainingSessionsBloc>().add(
-                                TrainingSessionsEvent.delete(
-                                  trainingSession: trainingSession,
-                                ),
-                              );
-                        },
-                        icon: const Icon(Icons.delete),
+                            },
+                          ),
+                        ),
                       ),
                     ],
                   ),
